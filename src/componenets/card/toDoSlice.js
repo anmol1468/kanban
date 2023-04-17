@@ -21,8 +21,7 @@ const toDoSlice = createSlice({
       return [...state, action.payload]
     },
     removeTask: (state, action) => {
-  const idToRemove = parseInt(action.payload.id); // convert to number
-  return state.filter(task => task.id !== idToRemove);
+      return state.filter(task => task.id !== action.payload.id);
 }
   }
 })

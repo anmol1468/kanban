@@ -8,7 +8,23 @@ import {addTask as addDoing, removeTask as removeDoing} from '../card/doingSlice
 import {addTask as addDone, removeTask as removeDone} from '../card/doneSlice'  
 
 
+
+
 const Board = () => {
+
+
+  const newTask = () => {
+    
+    const task = prompt('Enter task')
+    const id = Math.random()
+
+    if (task.length) {
+    dispatch(addToDo({
+      info: task,
+      id: id
+    }))
+  }}
+
 
   const dispatch = useDispatch();
 
@@ -33,9 +49,9 @@ const Board = () => {
     accept: 'div',
     drop: (item) => {
       dispatch(addToDo(item))
-      dispatch(removeDone(item.id))
-      dispatch(removeDoing(item.id))
-      console.log('Dropped on To Do:', item);
+      dispatch(removeDone(item))
+      dispatch(removeDoing(item))
+      // console.log('Dropped on To Do:', item);
     },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
@@ -46,9 +62,9 @@ const Board = () => {
     accept: 'div',
     drop: (item) => {
       dispatch(addDoing(item))
-      dispatch(removeToDo(item.id))
-      dispatch(removeDone(item.id))
-      console.log('Dropped on Doing:', item);
+      dispatch(removeToDo(item))
+      dispatch(removeDone(item))
+      // console.log('Dropped on Doing:', item);
     },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
@@ -59,9 +75,9 @@ const Board = () => {
     accept: 'div',
     drop: (item) => {
       dispatch(addDone(item))
-      dispatch(removeDoing(item.id))
-      dispatch(removeToDo(item.id))
-      console.log('Dropped on Done:', item);
+      dispatch(removeDoing(item))
+      dispatch(removeToDo(item))
+      // console.log('Dropped on Done:', item);
     },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),
@@ -74,11 +90,14 @@ const Board = () => {
   // in the code below i am calling it ref1 instead of ref to that i can access the value in the State component props and then use ref property to assign the reference.
 
   return (
+    <>
+      <button onClick={newTask}>add task</button>
       <div className={styles.board}>
         <State ref1={toDoDrop} type='To Do' list={toDo} />
         <State ref1={doingDrop} type='Doing' list={doing} />
         <State ref1={doneDrop} type='Done' list={done} />
       </div>  
+    </>
   )
 }
 
