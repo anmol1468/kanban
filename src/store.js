@@ -9,10 +9,10 @@ const store = configureStore({
     doing: doingSlice,
     done: doneSlice
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    })
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware({
+  //     serializableCheck: false,
+  //   })
 })
 
 export default store

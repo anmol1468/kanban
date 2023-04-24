@@ -7,7 +7,7 @@ const toDoSlice = createSlice({
       id: 1,
       info: 'Clean room'
     },
-    {
+    { 
       id: 2,
       info: 'do laundary'
     },
@@ -18,7 +18,17 @@ const toDoSlice = createSlice({
   ],
   reducers: {
     addTask: (state, action) => {
-      return [...state, action.payload]
+      
+      let taskAlreadyExists = false;
+
+      state.forEach(task => {
+        if (action.payload.id === task.id) {
+          taskAlreadyExists = true;
+        }
+      })
+
+      if (taskAlreadyExists) {
+        return state } else { return [...state, action.payload] }
     },
     removeTask: (state, action) => {
       return state.filter(task => task.id !== action.payload.id);
