@@ -1,22 +1,19 @@
 import './App.scss';
+import Projects from './componenets/Projects/Projects';
 import Board from './componenets/board/Board';
-import store from './store'
-import { Provider } from 'react-redux';
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
+import { useSelector } from 'react-redux';
 
 function App() {
 
+  const projects = useSelector(state => state.projects.projects)
+  const visibleProjectIndex = useSelector(state => state.projects.visibleProjectIndex)
 
   return (
-    
-    <DndProvider backend={HTML5Backend}>
-    <Provider store={store}>
       <div className="App">
-        <Board />
+        <Projects />
+        <Board projects= {projects} visibleProjectIndex={visibleProjectIndex} />
       </div>
-    </Provider>
-    </DndProvider>
+    
   );
 }
 

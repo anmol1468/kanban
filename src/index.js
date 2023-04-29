@@ -2,13 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
+import store from './store'
+import { Provider } from 'react-redux';
+import { DndProvider } from 'react-dnd'
 import reportWebVitals from './reportWebVitals';
+import { HTML5Backend } from 'react-dnd-html5-backend'
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <DndProvider backend={HTML5Backend}>
+    <Provider store={store}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </Provider>
+  </DndProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
