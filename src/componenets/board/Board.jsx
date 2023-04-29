@@ -70,7 +70,11 @@ const Board = ({projects, visibleProjectIndex}) => {
 
   return (
     <>
-      <button onClick={newTask}>add task</button>
+      <div className={styles.boardHeader}>
+        <h3>{projects[visibleProjectIndex].name}</h3>
+        <button onClick={newTask}>add task</button>
+      </div>
+      
       <div className={styles.board}>
         <State ref1={toDoDrop} type='To Do' list={projects[visibleProjectIndex].toDo} />
         <State ref1={doingDrop} type='Doing' list={projects[visibleProjectIndex].doing} />
