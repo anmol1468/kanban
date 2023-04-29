@@ -4,7 +4,7 @@ import styles from './Projects.module.scss'
 import { addProject, changeVisibleProject } from '../projectSlice'
 import { useDispatch } from 'react-redux'
 
-const Projects = () => {
+const Projects = () => {  
 
   const projects = useSelector(state => state.projects.projects)
   const dispatch = useDispatch()
@@ -21,6 +21,8 @@ const Projects = () => {
 
   return (
     <div className={styles.Projects}>
+      <h1>Kanban</h1>
+      <h3>All Boards({projects.length})</h3>
       <ul>
         {projects.map((project, index) => {
           return <li key={index}
