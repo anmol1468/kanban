@@ -4,20 +4,22 @@ import State from '../state/State'
 import { useSelector, useDispatch } from 'react-redux'
 import { useDrop } from 'react-dnd'
 import { addToDo, addDoing, addDone, removeToDo, removeDoing, removeDone } from '../projectSlice'
+import { Box } from '@mui/material'
+import { boardStyles } from '../../styles/localStyles'
 
 
 const Board = ({projects, visibleProjectIndex}) => {
 
 
   const newTask = () => {
-    
+
     const task = prompt('Enter task')
     const id = Math.random()
 
     if (task.length) {
     dispatch(addToDo({
       taskInfo: task,
-      taskId: id, 
+      taskId: id,
       projectIndex: 0
     }))
   }}
@@ -25,7 +27,7 @@ const Board = ({projects, visibleProjectIndex}) => {
 
   const dispatch = useDispatch();
 
-    
+
   const [, toDoDrop] = useDrop(() => ({
     accept: 'div',
     drop: (item) => {
@@ -68,19 +70,17 @@ const Board = ({projects, visibleProjectIndex}) => {
 
   // in the code below i am calling it ref1 instead of ref to that i can access the value in the State component props and then use ref property to assign the reference.
 
+  const {BoxStyled, BtnStyled, BoxWrapper} = boardStyles;
+
   return (
-    <>
-      <div className={styles.boardHeader}>
-        <h3>{projects[visibleProjectIndex].name}</h3>
-        <button onClick={newTask}>add task</button>
-      </div>
-      
-      <div className={styles.board}>
+    <BoxStyled>
+      <BtnStyled variant='contained' color='primary' size='small' onClick={newTask}>+Add New Task</BtnStyled>
+      <BoxWrapper>
         <State ref1={toDoDrop} type='To Do' list={projects[visibleProjectIndex].toDo} />
         <State ref1={doingDrop} type='Doing' list={projects[visibleProjectIndex].doing} />
         <State ref1={doneDrop} type='Done' list={projects[visibleProjectIndex].done} />
-      </div>  
-    </>
+      </BoxWrapper>
+    </BoxStyled>
   )
 }
 
