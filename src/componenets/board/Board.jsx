@@ -1,26 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './Board.module.scss'
 import State from '../state/State'
 import { useSelector, useDispatch } from 'react-redux'
 import { useDrop } from 'react-dnd'
 import { addToDo, addDoing, addDone, removeToDo, removeDoing, removeDone } from '../projectSlice'
+import PromptBox from '../promptBox/PromptBox'
 
 
 const Board = ({projects, visibleProjectIndex}) => {
 
 
+  const [showPromt, setShowPrompt] = useState(false)
+  const toggleShowPromt = () => {
+    setShowPrompt(!showPromt)
+  }
+
+
   const newTask = () => {
     
     const task = prompt('Enter task')
+    const description = prompt('Describe your task')
     const id = Math.random()
 
     if (task.length) {
     dispatch(addToDo({
       taskInfo: task,
-      taskId: id, 
-      projectIndex: 0
+      description: description,
+      taskId: id,
+      projectIndex: visibleProjectIndex
     }))
-  }}
+  }
+
+}
 
 
   const dispatch = useDispatch();
@@ -72,7 +83,7 @@ const Board = ({projects, visibleProjectIndex}) => {
     <>
       <div className={styles.boardHeader}>
         <h3>{projects[visibleProjectIndex].name}</h3>
-        <button onClick={newTask}>add task</button>
+        <button onClick={toggleShowPromt}>add task</button>
       </div>
       
       <div className={styles.board}>
@@ -80,6 +91,8 @@ const Board = ({projects, visibleProjectIndex}) => {
         <State ref1={doingDrop} type='Doing' list={projects[visibleProjectIndex].doing} />
         <State ref1={doneDrop} type='Done' list={projects[visibleProjectIndex].done} />
       </div>  
+      
+      <PromptBox visible={showPromt} changeVisible={setShowPrompt} visibleProjectIndex={visibleProjectIndex} />
     </>
   )
 }

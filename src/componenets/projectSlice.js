@@ -9,15 +9,18 @@ const initialState = {
       toDo: [
     {
       id: 1,
-      info: 'Clean room'
+      info: 'Clean room',
+      description: 'description of the task'
     },
     { 
       id: 2,
-      info: 'do laundary'
+      info: 'do laundary',
+      description: 'description of the task'
     },
     {
       id: 3,
-      info: 'go run'
+      info: 'go run',
+      description: 'description of the task'
     },
       ],
       doing: [],
@@ -57,7 +60,8 @@ const projectSlice = createSlice({
       else {
       state.projects[state.visibleProjectIndex].toDo.push({
         id: action.payload.taskId,
-        info: action.payload.taskInfo
+        info: action.payload.taskInfo,
+        description: action.payload.description
       })}
     },
     addDoing: (state, action) => {
@@ -73,7 +77,8 @@ const projectSlice = createSlice({
       else {
       state.projects[state.visibleProjectIndex].doing.push({
         id: action.payload.taskId,
-        info: action.payload.taskInfo
+        info: action.payload.taskInfo,
+        description: action.payload.description
       })}
     },
     addDone: (state, action) => {
@@ -89,7 +94,8 @@ const projectSlice = createSlice({
       else {
       state.projects[state.visibleProjectIndex].done.push({
         id: action.payload.taskId,
-        info: action.payload.taskInfo
+        info: action.payload.taskInfo,
+        description: action.payload.description
       })}
     },
 
