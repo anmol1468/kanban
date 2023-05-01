@@ -3,10 +3,12 @@ import { useSelector } from 'react-redux'
 import styles from './Projects.module.scss'
 import { addProject, changeVisibleProject } from '../projectSlice'
 import { useDispatch } from 'react-redux'
+import { FaClipboardList } from 'react-icons/fa'
 
 const Projects = () => {  
 
   const projects = useSelector(state => state.projects.projects)
+  const visibleProjectIndex = useSelector(state => state.projects.visibleProjectIndex)
   const dispatch = useDispatch()
 
   const addProjectHandler = () => {
@@ -22,17 +24,18 @@ const Projects = () => {
   return (
     <div className={styles.Projects}>
       <h1>Kanban</h1>
-      <h3>All Boards({projects.length})</h3>
+      <h3>ALL BOARDS ({projects.length})</h3>
       <ul>
         {projects.map((project, index) => {
           return <li key={index}
           onClick={() => {
             dispatch(changeVisibleProject(index))
           } }
-          >{project.name}</li>
+          style={{backgroundColor: visibleProjectIndex===index? 'var(--color-primary)': 'transparent'}}
+          ><FaClipboardList></FaClipboardList> {project.name}</li>
         })}
       </ul>
-      <button onClick={addProjectHandler}>Add Project</button>
+      <button onClick={addProjectHandler}>Create New Board</button>
     </div>
   )
 }
