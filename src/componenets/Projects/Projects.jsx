@@ -4,8 +4,11 @@ import styles from './Projects.module.scss'
 import { addProject, changeVisibleProject } from '../projectSlice'
 import { useDispatch } from 'react-redux'
 import { FaClipboardList } from 'react-icons/fa'
+import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi'
 
 const Projects = () => {  
+
+  const onToggle = () => {}
 
   const projects = useSelector(state => state.projects.projects)
   const visibleProjectIndex = useSelector(state => state.projects.visibleProjectIndex)
@@ -35,7 +38,14 @@ const Projects = () => {
           ><FaClipboardList></FaClipboardList> {project.name}</li>
         })}
       </ul>
-      <button onClick={addProjectHandler}>Create New Board</button>
+      <button onClick={addProjectHandler}>+ Create New Board</button>
+
+      <div className={styles.toggle}>
+        <HiOutlineMoon />
+        <input onClick={onToggle} type="checkbox" id="switch" /><label for="switch">Toggle</label> 
+        <HiOutlineSun />
+      </div>
+      {/* <button></button> */}
     </div>
   )
 }
