@@ -80,10 +80,10 @@ const Board = ({projects, visibleProjectIndex}) => {
   // in the code below i am calling it ref1 instead of ref to that i can access the value in the State component props and then use ref property to assign the reference.
 
   return (
-    <>
+    <div className={styles.boardContainer}>
       <div className={styles.boardHeader}>
         <h3>{projects[visibleProjectIndex].name}</h3>
-        <button onClick={toggleShowPromt}>add task</button>
+        <button onClick={toggleShowPromt}>+ add new task</button>
       </div>
       
       <div className={styles.board}>
@@ -93,7 +93,7 @@ const Board = ({projects, visibleProjectIndex}) => {
       </div>  
       
       <PromptBox visible={showPromt} changeVisible={setShowPrompt} visibleProjectIndex={visibleProjectIndex} />
-    </>
+    </div>
   )
 }
 

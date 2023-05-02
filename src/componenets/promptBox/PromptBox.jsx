@@ -53,7 +53,7 @@ const PromptBox = ({visible, changeVisible, visibleProjectIndex}) => {
         <h4>Create new task</h4>
         <div>
           <h6>title</h6>
-          <input type="text" value={title} onChange={changeTitle} />
+          <input type="text" value={title} maxLength='30' onChange={changeTitle} />
         </div>
         <div>
           <h6>description</h6>

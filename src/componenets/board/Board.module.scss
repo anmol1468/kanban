@@ -1,5 +1,33 @@
-.board {
+
+.boardContainer {
   display: flex;
-  width: 100%;
+  width: 75%;
+  // justify-content: space-around;
+  flex-direction: column;
+
+
+  .boardHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.7rem 1rem;
+
+    button {
+      background-color: var(--color-primary);
+      color: var(--main-text-color);
+      border-radius: 20px;
+      padding: 0.4rem 0.7rem;
+      border: none;
+    }
+  }
+
+  .board {
+  display: flex;
+  // width: 75%;
   justify-content: space-around;
+
+  > div {
+    flex-basis: 33%;
+  }
 }
+}
+

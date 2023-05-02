@@ -35,13 +35,16 @@ const projectSlice = createSlice({
   reducers: {
     addProject: (state, action) => {
       const { projectId, projectName } = action.payload;
+
+      if (projectName.length) {
+
       state.projects.push({
         id: projectId,
         name: projectName,
         toDo: [],
         doing: [],
         done: [],
-      });
+      });}  
     }, 
     changeVisibleProject: (state, action) => {
       state.visibleProjectIndex = action.payload
