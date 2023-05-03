@@ -32,8 +32,10 @@ const Card = ({info, id, description}) => {
       <div className={styles.banner} 
       style={{display: showPopUp? 'block': 'none' }}
       >
+        <div>
         <h5>{info}</h5>
         <p>{description}</p>
+        </div>
       </div>
     </div>
   )

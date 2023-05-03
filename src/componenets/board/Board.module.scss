@@ -4,7 +4,10 @@
   width: 75%;
   // justify-content: space-around;
   flex-direction: column;
-
+  position: absolute;
+  right: 0;
+  overflow-x: hidden;
+  
 
   .boardHeader {
     display: flex;
@@ -24,6 +27,7 @@
   display: flex;
   // width: 75%;
   justify-content: space-around;
+  // overflow-y: scroll;
 
   > div {
     flex-basis: 33%;

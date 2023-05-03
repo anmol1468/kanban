@@ -10,8 +10,19 @@
 
 
   .banner {
-    position: absolute;
-    top: 40%;
-    left: 40%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100vw;
+    height: 100vh;
+    top: 0%;
+    left: 0%;
+
+    >div {
+      position: absolute;
+      top: 40%;
+      left: 40%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: var(--main-text-color);
+    }
   }
 }

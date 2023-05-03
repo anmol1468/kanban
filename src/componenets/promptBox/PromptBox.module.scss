@@ -1,7 +1,7 @@
 .promptBox {
   width: 100vw;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.5);
@@ -10,7 +10,7 @@
     position: absolute;
     // width: auto;
     // height: auto;
-    top: 30%;
-    left: 40%;
+    top: 35%;
+    left: 45%;
   }
 }
