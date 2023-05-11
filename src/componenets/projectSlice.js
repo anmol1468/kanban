@@ -1,33 +1,50 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice,  } from "@reduxjs/toolkit";
 
-const initialState = {
+const projects = localStorage.getItem('projects') !== null? {
+  visibleProjectIndex: 0,
+  projects: JSON.parse(localStorage.getItem('projects'))}: {
   visibleProjectIndex: 0,
   projects: [
     {
       id:1,
       name: 'demo',
-      toDo: [
-    {
-      id: 1,
-      info: 'Clean room',
-      description: 'description of the task'
-    },
-    { 
-      id: 2,
-      info: 'do laundary',
-      description: 'description of the task'
-    },
-    {
-      id: 3,
-      info: 'go run',
-      description: 'description of the task'
-    },
-      ],
+      toDo: [],
       doing: [],
       done: [],
     }
   ]
-}
+};
+
+const initialState = projects
+
+// const initialState = {
+//   visibleProjectIndex: 0,
+//   projects: [
+//     {
+//       id:1,
+//       name: 'demo',
+//       toDo: [
+//     // {
+//     //   id: 1,
+//     //   info: 'Clean room',
+//     //   description: 'description of the task'
+//     // },
+//     // { 
+//     //   id: 2,
+//     //   info: 'do laundary',
+//     //   description: 'description of the task'
+//     // },
+//     // {
+//     //   id: 3,
+//     //   info: 'go run',
+//     //   description: 'description of the task'
+//     // },
+//       ],
+//       doing: [],
+//       done: [],
+//     }
+//   ]
+// }
 
 const projectSlice = createSlice({
   name: "projects",
@@ -44,7 +61,10 @@ const projectSlice = createSlice({
         toDo: [],
         doing: [],
         done: [],
-      });}  
+      });
+    
+      localStorage.setItem(`projects`, JSON.stringify(state.projects))
+    }  
     }, 
     changeVisibleProject: (state, action) => {
       state.visibleProjectIndex = action.payload
@@ -65,7 +85,11 @@ const projectSlice = createSlice({
         id: action.payload.taskId,
         info: action.payload.taskInfo,
         description: action.payload.description
-      })}
+      })
+    
+
+    localStorage.setItem('projects', JSON.stringify(state.projects))
+    }
     },
     addDoing: (state, action) => {
       let taskAlreadyExists = false;
@@ -82,7 +106,11 @@ const projectSlice = createSlice({
         id: action.payload.taskId,
         info: action.payload.taskInfo,
         description: action.payload.description
-      })}
+      })
+    
+
+      localStorage.setItem('projects', JSON.stringify(state.projects))
+    }
     },
     addDone: (state, action) => {
       let taskAlreadyExists = false;
@@ -99,18 +127,27 @@ const projectSlice = createSlice({
         id: action.payload.taskId,
         info: action.payload.taskInfo,
         description: action.payload.description
-      })}
+      })
+
+    localStorage.setItem('projects', JSON.stringify(state.projects))
+    }
     },
 
     
     removeToDo: (state, action) => {
       state.projects[state.visibleProjectIndex].toDo = state.projects[state.visibleProjectIndex].toDo.filter(task => task.id !== action.payload.taskId);
+
+      localStorage.setItem('projects', JSON.stringify(state.projects))
     },
     removeDoing: (state, action) => {
       state.projects[state.visibleProjectIndex].doing = state.projects[state.visibleProjectIndex].doing.filter(task => task.id !== action.payload.taskId);
+
+      localStorage.setItem('projects', JSON.stringify(state.projects))
     },
     removeDone: (state, action) => {
-      state.projects[state.visibleProjectIndex].done = state.projects[action.payload.projectIndex].done.filter(task => task.id !== action.payload.taskId);
+      state.projects[state.visibleProjectIndex].done = state.projects[state.visibleProjectIndex].done.filter(task => task.id !== action.payload.taskId);
+
+      localStorage.setItem('projects', JSON.stringify(state.projects))
     },
   },
 });

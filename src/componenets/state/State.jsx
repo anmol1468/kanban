@@ -4,6 +4,8 @@ import Card from '../card/Card'
 
 // state here means what level the task is at - to do, doing or done (it is a coloumn component)
 
+
+
 function State({type, list, ref1}) {
   return (
     <div ref={ref1} className={styles.state}>

@@ -6,32 +6,25 @@ import { useDrop } from 'react-dnd'
 import { addToDo, addDoing, addDone, removeToDo, removeDoing, removeDone } from '../projectSlice'
 import PromptBox from '../promptBox/PromptBox'
 
+// const toDo = localStorage.getItem(`toDo`)
 
 const Board = ({projects, visibleProjectIndex}) => {
+
+
+  const toDo = localStorage.getItem(`projects`) !== null ? JSON.parse(localStorage.getItem(`projects`))[visibleProjectIndex].toDo : [];
+  const doing = localStorage.getItem(`projects`) !== null ? JSON.parse(localStorage.getItem(`projects`))[visibleProjectIndex].doing : [];
+  const done = localStorage.getItem(`projects`) !== null ? JSON.parse(localStorage.getItem(`projects`))[visibleProjectIndex].done : [];
+
+
+  // const toDo = localStorage.getItem(`toDo${visibleProjectIndex}`) !==null? JSON.parse(localStorage.getItem(`toDo${visibleProjectIndex}`)) : [];
+  // const doing = localStorage.getItem(`doing${visibleProjectIndex}`) !==null? JSON.parse(localStorage.getItem(`doing${visibleProjectIndex}`)) : [];
+  // const done = localStorage.getItem(`done${visibleProjectIndex}`) !==null? JSON.parse(localStorage.getItem(`done${visibleProjectIndex}`)) : [];
 
 
   const [showPromt, setShowPrompt] = useState(false)
   const toggleShowPromt = () => {
     setShowPrompt(!showPromt)
   }
-
-
-  const newTask = () => {
-    
-    const task = prompt('Enter task')
-    const description = prompt('Describe your task')
-    const id = Math.random()
-
-    if (task.length) {
-    dispatch(addToDo({
-      taskInfo: task,
-      description: description,
-      taskId: id,
-      projectIndex: visibleProjectIndex
-    }))
-  }
-
-}
 
 
   const dispatch = useDispatch();
@@ -87,9 +80,9 @@ const Board = ({projects, visibleProjectIndex}) => {
       </div>
       
       <div className={styles.board}>
-        <State ref1={toDoDrop} type='To Do' list={projects[visibleProjectIndex].toDo} />
-        <State ref1={doingDrop} type='Doing' list={projects[visibleProjectIndex].doing} />
-        <State ref1={doneDrop} type='Done' list={projects[visibleProjectIndex].done} />
+        <State ref1={toDoDrop} type='To Do' list={toDo} />
+        <State ref1={doingDrop} type='Doing' list={doing} />
+        <State ref1={doneDrop} type='Done' list={done} />
       </div>  
       
       <PromptBox visible={showPromt} changeVisible={setShowPrompt} visibleProjectIndex={visibleProjectIndex} />
