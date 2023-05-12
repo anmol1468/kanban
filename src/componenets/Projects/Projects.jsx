@@ -1,10 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import styles from './Projects.module.scss'
-import { addProject, changeVisibleProject } from '../projectSlice'
+import { addProject, removeProject, changeVisibleProject } from '../projectSlice'
 import { useDispatch } from 'react-redux'
 import { FaClipboardList } from 'react-icons/fa'
 import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi'
+import { BsFillTrash3Fill } from 'react-icons/bs'
 
 const Projects = () => {  
 
@@ -24,6 +25,10 @@ const Projects = () => {
     }))
   }
 
+  const removeProjectHandler = (id) => {
+    dispatch(removeProject({projectId: id}))
+  }
+
   return (
     <div className={styles.Projects}>
       <h1>Kanban</h1>
@@ -35,7 +40,9 @@ const Projects = () => {
             dispatch(changeVisibleProject(index))
           } }
           style={{backgroundColor: visibleProjectIndex===index? 'var(--color-primary)': 'transparent'}}
-          ><FaClipboardList></FaClipboardList> {project.name}</li>
+          ><FaClipboardList></FaClipboardList> {project.name} <BsFillTrash3Fill onClick={() => {
+            return (removeProjectHandler(project.id))
+          }} ></BsFillTrash3Fill> </li>
         })}
       </ul>
       <button onClick={addProjectHandler}>+ Create New Board</button>

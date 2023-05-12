@@ -2,8 +2,12 @@ import React, { useState } from 'react'
 import styles from './Card.module.scss'
 import { useDrag } from 'react-dnd'
 import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { removeToDo, removeDoing, removeDone } from '../projectSlice'
 
 const Card = ({info, id, description}) => {
+
+  const dispatch = useDispatch()
 
   const [showPopUp, setShowPopUp] = useState(false)
 
@@ -26,6 +30,12 @@ const Card = ({info, id, description}) => {
     }),
   }))
 
+  const deleteTask = (id) => {
+    dispatch(removeToDo({taskId: id}))
+    dispatch(removeDoing({taskId: id}))
+    dispatch(removeDone({taskId: id}))
+  }
+
   return (
     <div ref={drag} className={styles.card} onClick={togglePopUp}>
       <h5>{info}</h5>
@@ -35,6 +45,7 @@ const Card = ({info, id, description}) => {
         <div>
         <h5>{info}</h5>
         <p>{description}</p>
+        <button onClick={() => { return deleteTask(id)}} >delete task</button>
         </div>
       </div>
     </div>

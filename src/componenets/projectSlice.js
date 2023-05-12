@@ -63,12 +63,25 @@ const projectSlice = createSlice({
         done: [],
       });
     
-      localStorage.setItem(`projects`, JSON.stringify(state.projects))
-    }  
+      localStorage.setItem(`projects`, JSON.stringify(state.projects))}  
+    },
+
+    removeProject: (state, action) => {
+
+      if (state.projects.length===1) {
+        alert('At least 1 ongoing project needed!')
+        return
+      }
+
+      state.projects = state.projects.filter(project => project.id !== action.payload.projectId); 
+
+      localStorage.setItem('projects', JSON.stringify(state.projects))
     }, 
+
     changeVisibleProject: (state, action) => {
       state.visibleProjectIndex = action.payload
     },
+
     addToDo: (state, action) => {
 
       let taskAlreadyExists = false;
@@ -91,6 +104,7 @@ const projectSlice = createSlice({
     localStorage.setItem('projects', JSON.stringify(state.projects))
     }
     },
+
     addDoing: (state, action) => {
       let taskAlreadyExists = false;
 
@@ -112,6 +126,7 @@ const projectSlice = createSlice({
       localStorage.setItem('projects', JSON.stringify(state.projects))
     }
     },
+
     addDone: (state, action) => {
       let taskAlreadyExists = false;
 
@@ -132,18 +147,19 @@ const projectSlice = createSlice({
     localStorage.setItem('projects', JSON.stringify(state.projects))
     }
     },
-
     
     removeToDo: (state, action) => {
       state.projects[state.visibleProjectIndex].toDo = state.projects[state.visibleProjectIndex].toDo.filter(task => task.id !== action.payload.taskId);
 
       localStorage.setItem('projects', JSON.stringify(state.projects))
     },
+
     removeDoing: (state, action) => {
       state.projects[state.visibleProjectIndex].doing = state.projects[state.visibleProjectIndex].doing.filter(task => task.id !== action.payload.taskId);
 
       localStorage.setItem('projects', JSON.stringify(state.projects))
     },
+
     removeDone: (state, action) => {
       state.projects[state.visibleProjectIndex].done = state.projects[state.visibleProjectIndex].done.filter(task => task.id !== action.payload.taskId);
 
@@ -152,6 +168,6 @@ const projectSlice = createSlice({
   },
 });
 
-export const { addProject, changeVisibleProject, addToDo, addDoing, addDone, removeToDo, removeDoing, removeDone } = projectSlice.actions;
+export const { addProject, removeProject, changeVisibleProject, addToDo, addDoing, addDone, removeToDo, removeDoing, removeDone } = projectSlice.actions;
 
 export default projectSlice.reducer;
