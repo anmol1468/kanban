@@ -11,7 +11,7 @@ function State({type, list, ref1}) {
     <div ref={ref1} className={styles.state}>
       <h3>{type}</h3>
       <ul>
-        {list.map(task => <li key={task.id}><Card info={task.info} id={task.id} description={task.description} /></li> )}
+        {list?.map(task => <li key={task.id}><Card info={task.info} id={task.id} description={task.description} /></li> )}
       </ul>
     </div>
   )

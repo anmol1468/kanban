@@ -10,11 +10,31 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+function updateColorScheme(isNightMode) {
+
+  const root = document.documentElement;
+
+  if (isNightMode) {
+    root.style.setProperty('--color-primary', '#645FC6');
+    root.style.setProperty('--background-1', '#2C2C38');
+    root.style.setProperty('--background-2', '#21212D');
+    root.style.setProperty('--main-text-color', '#FFFFFF');
+    root.style.setProperty('--secondary-text-color', '#717581');
+  } else {
+    root.style.setProperty('--color-primary', '#645FC6');
+    root.style.setProperty('--background-1', '#FFFFFF');
+    root.style.setProperty('--background-2', '#F3F7FF');
+    root.style.setProperty('--main-text-color', '#000000');
+    root.style.setProperty('--secondary-text-color', '#5c5c5c');
+  }
+}
+
 root.render(
   <DndProvider backend={HTML5Backend}>
     <Provider store={store}>
       <React.StrictMode>
-        <App />
+        <App changeTheme={updateColorScheme} />
       </React.StrictMode>
     </Provider>
   </DndProvider>
@@ -25,3 +45,4 @@ root.render(
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 // reportWebVitals(console.log)
+// updateColorScheme(false)

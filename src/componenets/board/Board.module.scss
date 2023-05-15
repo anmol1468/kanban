@@ -13,6 +13,8 @@
     display: flex;
     justify-content: space-between;
     padding: 0.7rem 1rem;
+    background-color: var(--background-1);
+    color: var(--main-text-color);
 
     button {
       background-color: var(--color-primary);
@@ -20,6 +22,7 @@
       border-radius: 20px;
       padding: 0.4rem 0.7rem;
       border: none;
+      color: #ffffff;
     }
   }
 
@@ -27,6 +30,8 @@
   display: flex;
   // width: 75%;
   justify-content: space-around;
+  padding-top: 1rem;
+  color: var(--main-text-color);
   // overflow-y: scroll;
 
   > div {

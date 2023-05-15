@@ -11,9 +11,9 @@ import PromptBox from '../promptBox/PromptBox'
 const Board = ({projects, visibleProjectIndex}) => {
 
 
-  const toDo = localStorage.getItem(`projects`) !== null ? JSON.parse(localStorage.getItem(`projects`))[visibleProjectIndex].toDo : [];
-  const doing = localStorage.getItem(`projects`) !== null ? JSON.parse(localStorage.getItem(`projects`))[visibleProjectIndex].doing : [];
-  const done = localStorage.getItem(`projects`) !== null ? JSON.parse(localStorage.getItem(`projects`))[visibleProjectIndex].done : [];
+  const toDo = localStorage.getItem(`projects`) !== null ? JSON.parse(localStorage.getItem(`projects`))[visibleProjectIndex]?.toDo : [];
+  const doing = localStorage.getItem(`projects`) !== null ? JSON.parse(localStorage.getItem(`projects`))[visibleProjectIndex]?.doing : [];
+  const done = localStorage.getItem(`projects`) !== null ? JSON.parse(localStorage.getItem(`projects`))[visibleProjectIndex]?.done : [];
 
 
   // const toDo = localStorage.getItem(`toDo${visibleProjectIndex}`) !==null? JSON.parse(localStorage.getItem(`toDo${visibleProjectIndex}`)) : [];
@@ -75,7 +75,7 @@ const Board = ({projects, visibleProjectIndex}) => {
   return (
     <div className={styles.boardContainer}>
       <div className={styles.boardHeader}>
-        <h3>{projects[visibleProjectIndex].name}</h3>
+        <h3>{projects[visibleProjectIndex]?.name}</h3>
         <button onClick={toggleShowPromt}>+ add new task</button>
       </div>
       

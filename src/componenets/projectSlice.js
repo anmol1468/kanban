@@ -17,35 +17,6 @@ const projects = localStorage.getItem('projects') !== null? {
 
 const initialState = projects
 
-// const initialState = {
-//   visibleProjectIndex: 0,
-//   projects: [
-//     {
-//       id:1,
-//       name: 'demo',
-//       toDo: [
-//     // {
-//     //   id: 1,
-//     //   info: 'Clean room',
-//     //   description: 'description of the task'
-//     // },
-//     // { 
-//     //   id: 2,
-//     //   info: 'do laundary',
-//     //   description: 'description of the task'
-//     // },
-//     // {
-//     //   id: 3,
-//     //   info: 'go run',
-//     //   description: 'description of the task'
-//     // },
-//       ],
-//       doing: [],
-//       done: [],
-//     }
-//   ]
-// }
-
 const projectSlice = createSlice({
   name: "projects",
   initialState,
@@ -74,6 +45,7 @@ const projectSlice = createSlice({
       }
 
       state.projects = state.projects.filter(project => project.id !== action.payload.projectId); 
+      state.visibleProjectIndex = 0
 
       localStorage.setItem('projects', JSON.stringify(state.projects))
     }, 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import styles from './Projects.module.scss'
 import { addProject, removeProject, changeVisibleProject } from '../projectSlice'
@@ -6,14 +6,20 @@ import { useDispatch } from 'react-redux'
 import { FaClipboardList } from 'react-icons/fa'
 import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi'
 import { BsFillTrash3Fill } from 'react-icons/bs'
+import { toggleTheme } from '../../themeSlice'
 
 const Projects = () => {  
 
-  const onToggle = () => {}
+  const dispatch = useDispatch()
+
+  const nightMode = useSelector(state => state.nightMode)
+
+  const onToggle = () => {
+    dispatch(toggleTheme(!nightMode))
+  }
 
   const projects = useSelector(state => state.projects.projects)
   const visibleProjectIndex = useSelector(state => state.projects.visibleProjectIndex)
-  const dispatch = useDispatch()
 
   const addProjectHandler = () => {
     const projectName = prompt('Enter project name')
@@ -39,10 +45,13 @@ const Projects = () => {
           onClick={() => {
             dispatch(changeVisibleProject(index))
           } }
-          style={{backgroundColor: visibleProjectIndex===index? 'var(--color-primary)': 'transparent'}}
-          ><FaClipboardList></FaClipboardList> {project.name} <BsFillTrash3Fill onClick={() => {
+          style={{
+            backgroundColor: visibleProjectIndex===index? 'var(--color-primary)': 'transparent',
+            color: visibleProjectIndex===index? '#ffffff': 'var(--main-text-color)'          
+          }}
+          ><FaClipboardList></FaClipboardList> {project.name} <span><BsFillTrash3Fill onClick={() => {
             return (removeProjectHandler(project.id))
-          }} ></BsFillTrash3Fill> </li>
+          }} ></BsFillTrash3Fill></span> </li>
         })}
       </ul>
       <button onClick={addProjectHandler}>+ Create New Board</button>
