@@ -6,7 +6,7 @@ import themeSlice from "./themeSlice";
 const store = configureStore({
   reducer: {
     projects: projectSlice,
-    nightMode: themeSlice
+    theme: themeSlice
   },
   // middleware: (getDefaultMiddleware) =>
   //   getDefaultMiddleware({

@@ -8,28 +8,25 @@ import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi'
 import { BsFillTrash3Fill } from 'react-icons/bs'
 import { toggleTheme } from '../../themeSlice'
 
-const Projects = () => {  
+const Projects = ({changeTheme, setShowProjectPrompt}) => {  
 
   const dispatch = useDispatch()
 
-  const nightMode = useSelector(state => state.nightMode)
+  const showProjectPrompt = () => {
+    setShowProjectPrompt(true)
+  }
+
+  const nightMode = useSelector(state => state.theme.nightMode)
 
   const onToggle = () => {
     dispatch(toggleTheme(!nightMode))
+    changeTheme(!nightMode)
   }
 
   const projects = useSelector(state => state.projects.projects)
   const visibleProjectIndex = useSelector(state => state.projects.visibleProjectIndex)
 
-  const addProjectHandler = () => {
-    const projectName = prompt('Enter project name')
-    const projectId = Math.random()
-
-    dispatch(addProject({
-      projectId,
-      projectName
-    }))
-  }
+  
 
   const removeProjectHandler = (id) => {
     dispatch(removeProject({projectId: id}))
@@ -54,7 +51,7 @@ const Projects = () => {
           }} ></BsFillTrash3Fill></span> </li>
         })}
       </ul>
-      <button onClick={addProjectHandler}>+ Create New Board</button>
+      <button onClick={showProjectPrompt}>+ Create New Board</button>
 
       <div className={styles.toggle}>
         <HiOutlineMoon />
