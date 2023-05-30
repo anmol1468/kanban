@@ -1,3 +1,4 @@
+@use '../../utilities.scss' as mixin;
 
 .boardContainer {
   display: flex;
@@ -8,12 +9,20 @@
   right: 0;
   overflow-x: hidden;
 
+  @include mixin.respond(eight) {
+    width: 100%;
+  }
+
   .boardHeader {
     display: flex;
     justify-content: space-between;
     padding: 0.7rem 1rem;
     background-color: var(--background-1);
     color: var(--main-text-color);
+
+    @include mixin.respond(eight) {
+      // opacity: 0;
+    }
 
     button {
       background-color: var(--color-primary);

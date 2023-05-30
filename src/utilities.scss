@@ -5,3 +5,59 @@
   --main-text-color: #fff;
   --secondary-text-color: #717581;
 }
+
+@mixin respond($breakpoint) {
+  @if ($breakpoint ==ten) {
+    @media (max-width: 62.5em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint ==nine) {
+    @media (max-width: 56.25em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint ==eight) {
+    @media (max-width: 50em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint ==seven) {
+    @media (max-width: 43.75em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint ==sixPointFive) {
+    @media (max-width: 38.9375em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint ==six) {
+    @media (max-width: 37.5em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint ==five) {
+    @media (max-width: 31.25em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint ==four) {
+    @media (max-width: 25em) {
+      @content;
+    }
+  }
+
+  @if ($breakpoint ==three) {
+    @media (max-width: 18.75em) {
+      @content;
+    }
+  }
+}

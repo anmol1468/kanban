@@ -32,9 +32,17 @@ const Projects = ({changeTheme, setShowProjectPrompt}) => {
     dispatch(removeProject({projectId: id}))
   }
 
+  // the code below is to get and change the value of selected item in the responsive header <select> 
+  const [selectedProject, setSelectedProject] = useState(0)
+  const changeSelectedProject = (index) => {
+    setSelectedProject(index)
+  }
+
+
   return (
+    <>
     <div className={styles.Projects}>
-      <h1>Kanban</h1>
+      <h1><span>K</span>anban</h1>
       <h3>ALL BOARDS ({projects.length})</h3>
       <ul>
         {projects.map((project, index) => {
@@ -55,11 +63,33 @@ const Projects = ({changeTheme, setShowProjectPrompt}) => {
 
       <div className={styles.toggle}>
         <HiOutlineMoon />
-        <input onClick={onToggle} type="checkbox" id="switch" /><label for="switch">Toggle</label> 
+        <input onClick={onToggle} type="checkbox" id="switch" checked={!nightMode} /><label for="switch">
+          Toggle</label> 
         <HiOutlineSun />
       </div>
       {/* <button></button> */}
     </div>
+
+    {/* the code below is for smaller screens only */}
+
+    <div className={styles.responsiveProjects}>
+      <h1><span>K</span>anban</h1>
+      <select name="visibleProject" id="visibleProject"
+      onClick={() => {
+            dispatch(changeVisibleProject(selectedProject))
+          } }
+      onChange={(e) => { changeSelectedProject(e.target.value)}}
+      >
+        {projects.map((project, index) => {
+          return <option value={index}
+          
+          key={index}
+          >{project.name}</option>
+        })}
+      </select>
+      <button onClick={showProjectPrompt} >+</button>
+    </div>
+    </>
   )
 }
 

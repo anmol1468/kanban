@@ -1,6 +1,9 @@
+@use './utilities.scss' as mixin;
+
 .App {
   text-align: center;
   display: flex;
+
 }
 
 .App-logo {
