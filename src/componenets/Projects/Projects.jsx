@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import styles from './Projects.module.scss'
 import { addProject, removeProject, changeVisibleProject } from '../projectSlice'
@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { FaClipboardList } from 'react-icons/fa'
 import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi'
 import { BsFillTrash3Fill } from 'react-icons/bs'
+import { AiOutlineDown } from 'react-icons/ai'
 import { toggleTheme } from '../../themeSlice'
 
 const Projects = ({changeTheme, setShowProjectPrompt}) => {  
@@ -31,13 +32,6 @@ const Projects = ({changeTheme, setShowProjectPrompt}) => {
   const removeProjectHandler = (id) => {
     dispatch(removeProject({projectId: id}))
   }
-
-  // the code below is to get and change the value of selected item in the responsive header <select> 
-  const [selectedProject, setSelectedProject] = useState(0)
-  const changeSelectedProject = (index) => {
-    setSelectedProject(index)
-  }
-
 
   return (
     <>
@@ -74,20 +68,28 @@ const Projects = ({changeTheme, setShowProjectPrompt}) => {
 
     <div className={styles.responsiveProjects}>
       <h1><span>K</span>anban</h1>
+
+      <div>
       <select name="visibleProject" id="visibleProject"
-      onClick={() => {
-            dispatch(changeVisibleProject(selectedProject))
+      onChange={(e) => {
+            return dispatch(changeVisibleProject(e.target.value))
           } }
-      onChange={(e) => { changeSelectedProject(e.target.value)}}
       >
         {projects.map((project, index) => {
           return <option value={index}
           
           key={index}
-          >{project.name}</option>
+          >{project.name}
+          <AiOutlineDown/>
+          </option>
+          
         })}
       </select>
+      <BsFillTrash3Fill onClick={() => {
+            return (removeProjectHandler(projects[visibleProjectIndex].id))
+          }} ></BsFillTrash3Fill> 
       <button onClick={showProjectPrompt} >+</button>
+      </div>
     </div>
     </>
   )

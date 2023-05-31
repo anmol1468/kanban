@@ -80,7 +80,7 @@ const Board = ({projects, visibleProjectIndex}) => {
       </div>
       
       <div className={styles.board}>
-        <State ref1={toDoDrop} type='To Do' list={toDo} />
+        <State ref1={toDoDrop} setShowPrompt={setShowPrompt} type='To Do' list={toDo} />
         <State ref1={doingDrop} type='Doing' list={doing} />
         <State ref1={doneDrop} type='Done' list={done} />
       </div>  

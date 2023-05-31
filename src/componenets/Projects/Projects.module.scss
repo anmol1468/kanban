@@ -165,4 +165,18 @@
     
     span {color: var(--color-primary);}
   }
+
+
+  select {
+    background-color: transparent;
+    border: none;
+    color: var(--main-text-color);
+
+
+    // code lines below are to remove the default down arrow in select
+    appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+
+  }
 }
