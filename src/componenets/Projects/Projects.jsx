@@ -5,7 +5,7 @@ import { addProject, removeProject, changeVisibleProject } from '../projectSlice
 import { useDispatch } from 'react-redux'
 import { FaClipboardList } from 'react-icons/fa'
 import { HiOutlineSun, HiOutlineMoon } from 'react-icons/hi'
-import { BsFillTrash3Fill } from 'react-icons/bs'
+import { BsFillTrash3Fill, BsFillSunFill, BsMoonFill } from 'react-icons/bs'
 import { AiOutlineDown } from 'react-icons/ai'
 import { toggleTheme } from '../../themeSlice'
 
@@ -67,8 +67,9 @@ const Projects = ({changeTheme, setShowProjectPrompt}) => {
     {/* the code below is for smaller screens only */}
 
     <div className={styles.responsiveProjects}>
-      <h1><span>K</span>anban</h1>
+      <h1><span>K</span>b</h1>
 
+      <div className={styles.projectOptions}>
       <div>
       <select name="visibleProject" id="visibleProject"
       onChange={(e) => {
@@ -80,15 +81,23 @@ const Projects = ({changeTheme, setShowProjectPrompt}) => {
           
           key={index}
           >{project.name}
-          <AiOutlineDown/>
+          
           </option>
           
         })}
       </select>
+      <AiOutlineDown/>
+      </div>
+      <div>
       <BsFillTrash3Fill onClick={() => {
             return (removeProjectHandler(projects[visibleProjectIndex].id))
           }} ></BsFillTrash3Fill> 
       <button onClick={showProjectPrompt} >+</button>
+      </div>
+      </div>
+
+      <div className={styles.theme}>
+        {nightMode? <BsMoonFill onClick={onToggle} ></BsMoonFill>: <BsFillSunFill onClick={onToggle} ></BsFillSunFill>}
       </div>
     </div>
     </>

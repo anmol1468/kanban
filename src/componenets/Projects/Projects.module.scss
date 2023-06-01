@@ -150,33 +150,61 @@
 
 .responsiveProjects {
   display: none;
+  padding: 0.4rem 1rem;
   color: #fff;
   position: fixed;
   width: 100%;
   justify-content: space-between;
+  align-items: center;
   background-color: var(--background-1);
-  z-index: 9999;
+  z-index: 999;
 
   @include respond(eight) {
     display: flex;
   }
 
   h1 {
+    color: var(--main-text-color);
+    letter-spacing: 0px;
     
     span {color: var(--color-primary);}
   }
 
+  .projectOptions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-  select {
+    >div {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 0.2rem;
+    }
+
+    select {
     background-color: transparent;
     border: none;
+    outline: none;
     color: var(--main-text-color);
+    margin-right: 0.3rem;
+
+    option {
+      color: var(--main-text-color);
+      padding: 0.5rem;
+    }
 
 
     // code lines below are to remove the default down arrow in select
     appearance: none;
     text-indent: 1px;
     text-overflow: '';
+  } 
+  }  
 
+  svg {
+    color: var(--main-text-color  );
+    // filter: brightness(1.5);
   }
 }

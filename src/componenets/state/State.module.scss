@@ -9,6 +9,13 @@
 
     li {
       list-style: none;
+
+      button {
+        margin-top: 2rem;
+        background-color: transparent;
+        border: none;
+        color: var(--color-primary);
+      }
     }
   }
 }

@@ -14,7 +14,7 @@ function State({type, list, ref1, setShowPrompt}) {
         {list?.map(task => <li key={task.id}><Card info={task.info} id={task.id} description={task.description} /></li> )}
         {window.innerWidth<799 && type==='To Do' && <li onClick={() => {
           setShowPrompt(true)
-        }}>+ task</li>  }
+        }}><button> + task</button></li>  }
       </ul>
     </div>
   )
