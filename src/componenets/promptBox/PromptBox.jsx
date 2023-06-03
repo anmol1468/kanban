@@ -30,17 +30,6 @@ const PromptBox = ({visible, changeVisible, visibleProjectIndex}) => {
     setTitle('')
     changeVisible(false)
 
-  //   if (task.length) {
-  //   dispatch(addToDo({
-  //     taskInfo: title,
-  //     description: description,
-  //     taskId: id,
-  //     projectIndex: visibleProjectIndex
-  //   }))
-  // }
-
-
-
   }
 
   return (
@@ -50,7 +39,7 @@ const PromptBox = ({visible, changeVisible, visibleProjectIndex}) => {
     // onClick={() => { changeVisible(false)}}
     >
       <div>
-        <h4>Create new task</h4>
+        <h4>Create New Task</h4>
         <div>
           <h6>Title</h6>
           <input type="text" value={title} maxLength='30' onChange={changeTitle} />
