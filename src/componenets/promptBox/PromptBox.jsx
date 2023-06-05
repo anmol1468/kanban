@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from './PromptBox.module.scss'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addToDo } from '../projectSlice' 
 
 const PromptBox = ({visible, changeVisible, visibleProjectIndex}) => {

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './Board.module.scss'
 import State from '../state/State'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { useDrop } from 'react-dnd'
 import { addToDo, addDoing, addDone, removeToDo, removeDoing, removeDone } from '../projectSlice'
 import PromptBox from '../promptBox/PromptBox'
